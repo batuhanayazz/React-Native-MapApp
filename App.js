@@ -12,6 +12,10 @@ import { UserLocationContext } from "./App/Context/UserLocationContext";
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  let [fontsLoaded] = useFonts({
+    "raleway-semibold": require("./assets/Fonts/Raleway-SemiBold.ttf"),
+    "raleway-regular": require("./assets/Fonts/Raleway-Regular.ttf"),
+  });
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
