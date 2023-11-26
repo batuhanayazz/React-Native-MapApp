@@ -13,7 +13,11 @@ import Profile from "../Screens/Profile";
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
@@ -24,9 +28,36 @@ export default function TabNavigation() {
           ),
         }}
       />
-      <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Fav" component={Fav} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarLabel: "Search",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Fav"
+        component={Fav}
+        options={{
+          tabBarLabel: "Fav",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-heart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user-circle-o" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
