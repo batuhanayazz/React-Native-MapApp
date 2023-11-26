@@ -7,6 +7,7 @@ import * as Location from "expo-location";
 import { useFonts } from "expo-font";
 
 import TabNavigation from "./App/Navigations/TabNavigation";
+import { UserLocationContext } from "./App/Context/UserLocationContext";
 
 export default function App() {
   const [location, setLocation] = useState(null);
@@ -25,9 +26,11 @@ export default function App() {
   }, []);
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <TabNavigation />
-      </NavigationContainer>
+      <UserLocationContext.Provider value={(location, setLocation)}>
+        <NavigationContainer>
+          <TabNavigation />
+        </NavigationContainer>
+      </UserLocationContext.Provider>
     </View>
   );
 }
