@@ -29,7 +29,7 @@ export default function CategoryList({ setSelectedCategory }) {
       <Text
         style={{
           fontSize: 20,
-          fontFamily: "raleway-bold",
+          fontFamily: "raleway-semibold",
         }}
       >
         Select Top Category
