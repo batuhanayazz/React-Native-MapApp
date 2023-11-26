@@ -5,17 +5,24 @@ import GoogleMapView from "../Components/Home/GoogleMapView";
 import CategoryList from "../Components/Home/CategoryList";
 import PlaceList from "../Components/Home/PlaceList";
 import GlobalApi from "../Services/GlobalApi";
+import { UserLocationContext } from "../Context/UserLocationContext";
 
 export default function Home() {
   const [placeList, setPlaceList] = useState([]);
+  const { location, setLocation } = useContext(UserLocationContext);
   useEffect(() => {
-    GetNearBySearchPlace();
-  }, []);
+    if (location) {
+      GetNearBySearchPlace("restaurant");
+    }
+  }, [location]);
 
-  const GetNearBySearchPlace = () => {
-    GlobalApi.nearByPlace().then((resp) => {
-      console.log("resp", resp);
-
+  const GetNearBySearchPlace = (value) => {
+    GlobalApi.nearByPlace(
+      location.coords.latitude,
+      location.coords.longitude,
+      value
+    ).then((resp) => {
+      setPlaceList(resp.data.results);
     });
   };
 
@@ -23,7 +30,9 @@ export default function Home() {
     <View style={{ padding: 20, marginTop: 30 }}>
       <Header />
       <GoogleMapView />
-      <CategoryList />
+      <CategoryList
+        setSelectedCategory={(value) => GetNearBySearchPlace(value)}
+      />
       {placeList ? <PlaceList placeList={placeList} /> : null}
     </View>
   );
