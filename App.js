@@ -16,6 +16,7 @@ export default function App() {
     "raleway-semibold": require("./assets/Fonts/Raleway-SemiBold.ttf"),
     "raleway-regular": require("./assets/Fonts/Raleway-Regular.ttf"),
   });
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -28,6 +29,9 @@ export default function App() {
       setLocation(location);
     })();
   }, []);
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
   return (
     <View style={styles.container}>
       <UserLocationContext.Provider value={(location, setLocation)}>

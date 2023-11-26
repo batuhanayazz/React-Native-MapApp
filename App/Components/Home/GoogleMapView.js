@@ -40,9 +40,7 @@ export default function GoogleMapView() {
         provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
         region={mapRegion}
-      >
-        <Marker title="You" coordinate={mapRegion} />
-      </MapView>
+      ></MapView>
     </View>
   );
 }
