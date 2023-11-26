@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 
+import { useFonts } from "expo-font";
+
 import TabNavigation from "./App/Navigations/TabNavigation";
 
 export default function App() {
